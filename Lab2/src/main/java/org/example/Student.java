@@ -1,5 +1,5 @@
 package org.example;
-import java.time.LocalTime;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,9 +17,9 @@ public class Student {
     private boolean isOnBudget;
     private boolean isOnGrant;
     private boolean hasFailures;
-    private LocalTime dateOfBirth;
+    private LocalDateTime dateOfBirth;
 
-    public Student(String name, String surname, String speciality, String group, boolean isOnBudget, LocalTime dateOfBirth){
+    public Student(String name, String surname, String speciality, String group, boolean isOnBudget, LocalDateTime dateOfBirth){
         this.name = name;
         this.surname = surname;
         this.faculty = "FCIM";
@@ -107,11 +107,11 @@ public class Student {
         isOnGrant = onGrant;
     }
 
-    public LocalTime getDateOfBirth() {
+    public LocalDateTime getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalTime dateOfBirth) {
+    public void setDateOfBirth(LocalDateTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
