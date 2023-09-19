@@ -11,6 +11,8 @@ public class Student {
     private String speciality;
     private String group;
     private int yearOfEducation;
+    private int id;
+    public static int lastId = 1;
     List<Integer> marks;
     private boolean isOnBudget;
     private boolean isOnGrant;
@@ -24,6 +26,7 @@ public class Student {
         this.speciality = speciality;
         this.group = group;
         this.yearOfEducation = 1;
+        this.id = Student.lastId++;
         this.marks = new ArrayList<>(10);
         this.isOnBudget = isOnBudget;
         this.isOnGrant = isOnBudget;
@@ -78,6 +81,14 @@ public class Student {
 
     public void setYearOfEducation(int yearOfEducation) {
         this.yearOfEducation = yearOfEducation;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean isOnBudget() {
