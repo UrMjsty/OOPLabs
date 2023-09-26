@@ -1,4 +1,6 @@
 package org.example;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,28 +11,30 @@ public class Student {
     private String lastName;
     private String email;
     private Faculty faculty;
-    private String speciality;
+    private StudyField studyField;
     private String group;
     private int yearOfEducation;
     List<Integer> marks;
     private boolean isOnBudget;
     private boolean isOnGrant;
     private boolean hasFailures;
-    private LocalTime dateOfBirth;
-    private LocalTime enrollmentDate;
+    private LocalDate dateOfBirth;
+    private LocalDate enrollmentDate;
 
-    public Student(String firstName, String lastName,Faculty faculty ,String speciality, String group, boolean isOnBudget, LocalTime dateOfBirth){
+    public Student(String firstName, String lastName,String email,Faculty faculty ,StudyField studyField, String group, boolean isOnBudget, LocalDate dateOfBirth){
         this.firstName = firstName;
         this.lastName = lastName;
+        this.email = email;
         this.faculty = faculty;
-        this.speciality = speciality;
+        this.studyField = studyField;
         this.group = group;
         this.yearOfEducation = 1;
-        this.marks = new ArrayList<>(10);
+        this.marks = new ArrayList<>();
         this.isOnBudget = isOnBudget;
         this.isOnGrant = isOnBudget;
         this.hasFailures = false;
         this.dateOfBirth = dateOfBirth;
+        this.enrollmentDate = LocalDate.now();
 
     };
 
@@ -66,12 +70,12 @@ public class Student {
         this.faculty = faculty;
     }
 
-    public String getSpeciality() {
-        return speciality;
+    public StudyField getStudyField() {
+        return studyField;
     }
 
-    public void setSpeciality(String speciality) {
-        this.speciality = speciality;
+    public void setStudyField(StudyField studyField) {
+        this.studyField = studyField;
     }
 
     public String getGroup() {
@@ -106,19 +110,19 @@ public class Student {
         isOnGrant = onGrant;
     }
 
-    public LocalTime getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalTime dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
-    public LocalTime getEnrollmentDate() {
+    public LocalDate getEnrollmentDate() {
         return enrollmentDate;
     }
 
-    public void setEnrollmentDate(LocalTime enrollmentDate) {
+    public void setEnrollmentDate(LocalDate enrollmentDate) {
         this.enrollmentDate = enrollmentDate;
     }
 
@@ -126,7 +130,7 @@ public class Student {
         return marks;
     }
 
-    public boolean isHasFailures() {
+    public boolean hasFailures() {
         return hasFailures;
     }
 
