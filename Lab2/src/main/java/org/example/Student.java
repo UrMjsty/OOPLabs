@@ -8,7 +8,7 @@ public class Student {
     private String firstName;
     private String lastName;
     private String email;
-    private String faculty;
+    private Faculty faculty;
     private String speciality;
     private String group;
     private int yearOfEducation;
@@ -19,10 +19,10 @@ public class Student {
     private LocalTime dateOfBirth;
     private LocalTime enrollmentDate;
 
-    public Student(String firstName, String lastName, String speciality, String group, boolean isOnBudget, LocalTime dateOfBirth){
+    public Student(String firstName, String lastName,Faculty faculty ,String speciality, String group, boolean isOnBudget, LocalTime dateOfBirth){
         this.firstName = firstName;
         this.lastName = lastName;
-        this.faculty = "FCIM";
+        this.faculty = faculty;
         this.speciality = speciality;
         this.group = group;
         this.yearOfEducation = 1;
@@ -58,11 +58,11 @@ public class Student {
         this.email = email;
     }
 
-    public String getFaculty() {
+    public Faculty getFaculty() {
         return faculty;
     }
 
-    public void setFaculty(String faculty) {
+    public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
     }
 
