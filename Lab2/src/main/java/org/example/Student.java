@@ -1,32 +1,31 @@
 package org.example;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class Student {
-    private String name;
-    private String surname;
+    private String firstName;
+    private String lastName;
+    private String email;
     private String faculty;
     private String speciality;
     private String group;
     private int yearOfEducation;
-    private int id;
-    public static int lastId = 1;
     List<Integer> marks;
     private boolean isOnBudget;
     private boolean isOnGrant;
     private boolean hasFailures;
-    private LocalDateTime dateOfBirth;
+    private LocalTime dateOfBirth;
+    private LocalTime enrollmentDate;
 
-    public Student(String name, String surname, String speciality, String group, boolean isOnBudget, LocalDateTime dateOfBirth){
-        this.name = name;
-        this.surname = surname;
+    public Student(String firstName, String lastName, String speciality, String group, boolean isOnBudget, LocalTime dateOfBirth){
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.faculty = "FCIM";
         this.speciality = speciality;
         this.group = group;
         this.yearOfEducation = 1;
-        this.id = Student.lastId++;
         this.marks = new ArrayList<>(10);
         this.isOnBudget = isOnBudget;
         this.isOnGrant = isOnBudget;
@@ -35,20 +34,28 @@ public class Student {
 
     };
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getSurname() {
-        return surname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setSurname(String surname) {
-        this.surname = surname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFaculty() {
@@ -83,14 +90,6 @@ public class Student {
         this.yearOfEducation = yearOfEducation;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public boolean isOnBudget() {
         return isOnBudget;
     }
@@ -107,12 +106,20 @@ public class Student {
         isOnGrant = onGrant;
     }
 
-    public LocalDateTime getDateOfBirth() {
+    public LocalTime getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDateTime dateOfBirth) {
+    public void setDateOfBirth(LocalTime dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public LocalTime getEnrollmentDate() {
+        return enrollmentDate;
+    }
+
+    public void setEnrollmentDate(LocalTime enrollmentDate) {
+        this.enrollmentDate = enrollmentDate;
     }
 
     public List<Integer> getMarks() {
