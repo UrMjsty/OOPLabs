@@ -6,13 +6,13 @@ import java.util.List;
 public class Faculty {
     private String name;
     private String abbreviation;
-    private List<Student> students;
+    private List<Student> enrolledStudents;
     private StudyField studyField;
 
     public Faculty(String name, String abbreviation, StudyField studyField){
         this.name = name;
         this.abbreviation = abbreviation;
-        students = new ArrayList<Student>();
+        enrolledStudents = new ArrayList<Student>();
         this.studyField = studyField;
     }
 
@@ -32,12 +32,15 @@ public class Faculty {
         this.abbreviation = abbreviation;
     }
 
-    public List<Student> getStudents() {
-        return students;
+    public List<Student> getEnrolledStudents() {
+        return enrolledStudents;
     }
 
-    public void setStudents(List<Student> students) {
-        this.students = students;
+    public void setEnrolledStudents(List<Student> enrolledStudents) {
+        this.enrolledStudents = enrolledStudents;
+    }
+    public void enrollStudent(Student student){
+        enrolledStudents.add(student);
     }
 
     public StudyField getStudyField() {
@@ -46,5 +49,11 @@ public class Faculty {
 
     public void setStudyField(StudyField studyField) {
         this.studyField = studyField;
+    }
+    public void displayCurrentEnrolledStudents(){
+        for (Student stud: enrolledStudents
+        )
+            System.out.println(stud.getFirstName() + " " + stud.getLastName());
+
     }
 }

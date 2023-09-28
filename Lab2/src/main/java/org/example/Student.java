@@ -1,7 +1,5 @@
 package org.example;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +24,7 @@ public class Student {
         this.lastName = lastName;
         this.email = email;
         this.faculty = faculty;
+        faculty.enrollStudent(this);
         this.studyField = studyField;
         this.group = group;
         this.yearOfEducation = 1;
