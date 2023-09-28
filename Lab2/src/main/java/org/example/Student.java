@@ -16,6 +16,7 @@ public class Student {
     private boolean isOnBudget;
     private boolean isOnGrant;
     private boolean hasFailures;
+    private boolean isGraduated;
     private LocalDate dateOfBirth;
     private LocalDate enrollmentDate;
 
@@ -32,6 +33,7 @@ public class Student {
         this.isOnBudget = isOnBudget;
         this.isOnGrant = isOnBudget;
         this.hasFailures = false;
+        this.isGraduated = true;
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = LocalDate.now();
 
@@ -137,6 +139,14 @@ public class Student {
         this.hasFailures = hasFailures;
     }
 
+    public boolean isGraduated() {
+        return isGraduated;
+    }
+
+    public void setGraduated(boolean graduated) {
+        isGraduated = graduated;
+    }
+
     public void setMarks(List<Integer> marks) {
         this.marks = marks;
     }
@@ -148,6 +158,19 @@ public class Student {
             else {
                 setOnGrant(false);
                 setHasFailures(true);
+            }
+        }
+        else if (season.equals("Summer")){
+            if (hasFailures){
+                System.out.println(firstName + " " + lastName + "has failures and can't pass the exam");
+                return;
+            }
+            if(!isPassed)
+                return;
+            else {
+                yearOfEducation++;
+                if (yearOfEducation > faculty.getStudyField().yearsOfStudying())
+                    isGraduated = true;
             }
         }
     }
