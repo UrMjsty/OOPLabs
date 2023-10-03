@@ -14,6 +14,7 @@ public class Student {
     private Faculty faculty;
     private StudyField studyField;
     private String group;
+    private int groupNumber;
     private int yearOfEducation;
     List<Integer> marks;
     private boolean isOnBudget;
@@ -23,15 +24,16 @@ public class Student {
     private LocalDate dateOfBirth;
     private LocalDate enrollmentDate;
 
-    public Student(String firstName, String lastName,String email,Faculty faculty , String group,int yearOfEducation, boolean isOnBudget, LocalDate dateOfBirth){
+    public Student(String firstName, String lastName,String email,String abbreviation, int groupNumber, boolean isOnBudget, LocalDate dateOfBirth){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.faculty = faculty;
+        this.faculty = Faculty.getFacultyByAbbreviation(abbreviation);
         faculty.enrollStudent(this);
         this.studyField = faculty.getStudyField();
-        this.group = group;
-        this.yearOfEducation = yearOfEducation;
+        this.groupNumber = groupNumber;
+        this.yearOfEducation = LocalDate.now().getYear() -groupNumber/10;
+        this.group = studyField.toString() + "-" + groupNumber;
         this.marks = new ArrayList<Integer>();
         this.isOnBudget = isOnBudget;
         this.isOnGrant = isOnBudget;
@@ -40,12 +42,14 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = LocalDate.now();
         studentsList.add(this);
+        System.out.println("yes1");
     };
     public Student(String firstName, String lastName, String email, String facultyName, String group, int yearOfEducation, boolean isOnBudget, boolean isOnGrant, boolean hasFailures, boolean isGraduated, LocalDate dateOfBirth, LocalDate enrollmentDate){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.faculty = Faculty.getFacultyByName(facultyName);
+        faculty.enrollStudent(this);
         this.studyField = faculty.getStudyField();
         this.group = group;
         this.yearOfEducation = yearOfEducation;
@@ -57,7 +61,7 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = enrollmentDate;
         studentsList.add(this);
-
+        System.out.println("yes");
     }
 
     public String getFirstName() {
