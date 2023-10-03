@@ -62,7 +62,7 @@ public class Faculty {
             System.out.println("On this faculty are enrolled:");
             for (Student stud: currentEnrolledStudents
             )
-                System.out.println(stud.getFirstName() + " " + stud.getLastName() + " " + stud.getYearOfEducation());
+                System.out.println(stud.getFirstName() + " " + stud.getLastName());
         }
     }
     public void displayGraduates(){
@@ -100,6 +100,13 @@ public class Faculty {
     public static Faculty getFacultyByName(String name){
         for(Faculty fac: facultiesList)
             if (fac.name.equals(name))
+                return fac;
+        return null;
+    }
+
+    public static Faculty getFacultyByAbbreviation(String abbreviation){
+        for(Faculty fac: facultiesList)
+            if (fac.abbreviation.equals(abbreviation))
                 return fac;
         return null;
     }
