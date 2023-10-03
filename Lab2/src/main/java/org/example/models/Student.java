@@ -1,10 +1,10 @@
-package org.example;
+package org.example.models;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class Student {
+    public static int numberOfAttributes = 9;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,7 +20,7 @@ public class Student {
     private LocalDate dateOfBirth;
     private LocalDate enrollmentDate;
 
-    public Student(String firstName, String lastName,String email,Faculty faculty ,StudyField studyField, String group, boolean isOnBudget, LocalDate dateOfBirth){
+    public Student(String firstName, String lastName,String email,Faculty faculty ,StudyField studyField, String group,int yearOfEducation, boolean isOnBudget, LocalDate dateOfBirth){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -28,15 +28,14 @@ public class Student {
         faculty.enrollStudent(this);
         this.studyField = studyField;
         this.group = group;
-        this.yearOfEducation = 1;
-        this.marks = new ArrayList<>();
+        this.yearOfEducation = yearOfEducation;
+        this.marks = new ArrayList<Integer>();
         this.isOnBudget = isOnBudget;
         this.isOnGrant = isOnBudget;
         this.hasFailures = false;
-        this.isGraduated = true;
+        this.isGraduated = false;
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = LocalDate.now();
-
     };
 
     public String getFirstName() {
@@ -160,7 +159,7 @@ public class Student {
                 setHasFailures(true);
             }
         }
-        else if (season.equals("Summer")){
+        else {
             if (hasFailures){
                 System.out.println(firstName + " " + lastName + "has failures and can't pass the exam");
                 return;
@@ -168,10 +167,19 @@ public class Student {
             if(!isPassed)
                 return;
             else {
-                yearOfEducation++;
-                if (yearOfEducation > faculty.getStudyField().yearsOfStudying())
-                    isGraduated = true;
+                this.yearOfEducation++;
+                if (this.yearOfEducation > faculty.getStudyField().yearsOfStudying())
+                    graduate();
             }
         }
+    }
+    private void graduate(){
+        isGraduated = true;
+        faculty.graduate(this);
+    }
+    @Override
+    public String toString(){
+        return firstName + "\n" + lastName + "\n" + email + "\n" + faculty + "\n" + studyField + "\n" + group + "\n" + yearOfEducation + "\n" + isOnBudget
+                + "\n" + isOnGrant + "\n" + isOnGrant + "\n" + hasFailures + "\n" + isGraduated + "\n" + dateOfBirth + "\n" +enrollmentDate +"\n";
     }
 }
