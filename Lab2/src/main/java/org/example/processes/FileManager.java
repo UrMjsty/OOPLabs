@@ -13,26 +13,6 @@ import java.util.Scanner;
 import static java.lang.Integer.parseInt;
 
 public class FileManager {
-    public void writeStudent(Student student){
-        try {
-            FileWriter studentWriter = new FileWriter("students.txt");
-            studentWriter.write(student.toString());
-            studentWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
-    public void writeStudent(String str){
-        try {
-            FileWriter studentWriter = new FileWriter("students.txt");
-            studentWriter.write(str);
-            studentWriter.close();
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
-        }
-    }
     public void writeStudents(List<Student> students){
         String str = "";
         for (Student stud: students)
