@@ -8,12 +8,12 @@ import java.util.Scanner;
 
 public class FacultyManager {
 
-    public static String input = "input";
-    public static Scanner scan = new Scanner(System.in);
-    static public void start(){
+    public String input = "input";
+    public Scanner scan = new Scanner(System.in);
+    public void start(){
         mainMenu();
     }
-    static private void mainMenu(){
+    private void mainMenu(){
         System.out.println("Welcome to TUM's student managment system!\n" +
                 "What do you want to do?\n" +
                 "g - General operation \n" +
@@ -38,7 +38,7 @@ public class FacultyManager {
                 mainMenu();
         }
     }
-    static private void generalOperations(){
+    private void generalOperations(){
         System.out.println("General Operations\n" +
                 "What do you want to do?\n" +
                 "cr/<faculty name>/<faculty abbreviation>/<field> - create faculty\n" +
@@ -74,7 +74,7 @@ public class FacultyManager {
             }
         }
     }
-    static private void facultyOperation(){
+    private void facultyOperation(){
         System.out.println("ns/<faculty abbreviation>/<first name>/<last name>/<email>/<day>/<month>/<year> - create student\n" +
                 "gs/<email> - graduate student\n" +
                 "de/<faculty abbreviation> - display enrolled students\n" +
@@ -108,11 +108,11 @@ public class FacultyManager {
             }
         }
     }
-    static private void studentOperation(){
+    private void studentOperation(){
         System.out.println("StudOper");
         doContinue();
     }
-    static private void createFaculty(String str){
+    private void createFaculty(String str){
         System.out.println(str);
         int slash = str.indexOf('/');
         String fn = str.substring(0, slash);
@@ -127,28 +127,28 @@ public class FacultyManager {
         Faculty.facultiesList.add(faculty);
         doContinue();
     }
-    static private void searchStudent(String str){
+    private void searchStudent(String str){
         System.out.println(str);
         doContinue();
     }
-    static private void displayFaculties(StudyField studyField){
+    private void displayFaculties(StudyField studyField){
         for(Faculty fac: Faculty.facultiesList)
             if(fac.getStudyField().equals(studyField))
                 System.out.println(fac.getName());
         doContinue();
     }
-    static private void displayFaculties(){
+    private void displayFaculties(){
         //System.out.println("dispFac");
         for(Faculty fac: Faculty.facultiesList)
             System.out.println(fac.getName());
         doContinue();
     }
 
-    static private void quit(){
+    private void quit(){
         System.out.println("\nq - Quit Program\n" +
                 "your input> ");
     }
-    static private void doContinue(){
+    private void doContinue(){
         System.out.println("Continue?\n" +
                 "mm - Back to main menu");
         quit();
@@ -165,4 +165,5 @@ public class FacultyManager {
         }
 
     }
+
 }
