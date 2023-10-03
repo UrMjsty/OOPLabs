@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Faculty {
-    public static int id = 0;
+    public static List<Faculty> facultiesList = new ArrayList<Faculty>();
     private String name;
     private String abbreviation;
     private List<Student> currentEnrolledStudents;
@@ -18,7 +18,7 @@ public class Faculty {
         graduatedStudents = new ArrayList<Student>();
         this.studyField = studyField;
         studyField.addFaciulty(this);
-        id++;
+        facultiesList.add(this);
     }
 
     public String getName() {
@@ -97,4 +97,11 @@ public class Faculty {
     public String toString(){
         return this.name + " " + this.abbreviation;
     }
+    public static Faculty getFacultyByName(String name){
+        for(Faculty fac: facultiesList)
+            if (fac.name.equals(name))
+                return fac;
+        return null;
+    }
+
 }

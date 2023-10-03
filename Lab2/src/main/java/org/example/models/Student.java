@@ -1,10 +1,13 @@
 package org.example.models;
+import org.example.Main;
+
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Student {
-    public static int numberOfAttributes = 9;
+    public static List<Student> studentsList = new ArrayList<Student>();
+    public static int numberOfAttributes = 12;
     private String firstName;
     private String lastName;
     private String email;
@@ -20,13 +23,13 @@ public class Student {
     private LocalDate dateOfBirth;
     private LocalDate enrollmentDate;
 
-    public Student(String firstName, String lastName,String email,Faculty faculty ,StudyField studyField, String group,int yearOfEducation, boolean isOnBudget, LocalDate dateOfBirth){
+    public Student(String firstName, String lastName,String email,Faculty faculty , String group,int yearOfEducation, boolean isOnBudget, LocalDate dateOfBirth){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.faculty = faculty;
         faculty.enrollStudent(this);
-        this.studyField = studyField;
+        this.studyField = faculty.getStudyField();
         this.group = group;
         this.yearOfEducation = yearOfEducation;
         this.marks = new ArrayList<Integer>();
@@ -36,7 +39,26 @@ public class Student {
         this.isGraduated = false;
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = LocalDate.now();
+        studentsList.add(this);
     };
+    public Student(String firstName, String lastName, String email, String facultyName, String group, int yearOfEducation, boolean isOnBudget, boolean isOnGrant, boolean hasFailures, boolean isGraduated, LocalDate dateOfBirth, LocalDate enrollmentDate){
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.faculty = Faculty.getFacultyByName(facultyName);
+        this.studyField = faculty.getStudyField();
+        this.group = group;
+        this.yearOfEducation = yearOfEducation;
+        this.marks = new ArrayList<Integer>();
+        this.isOnBudget = isOnBudget;
+        this.isOnGrant = isOnGrant;
+        this.hasFailures = hasFailures;
+        this.isGraduated = isGraduated;
+        this.dateOfBirth = dateOfBirth;
+        this.enrollmentDate = enrollmentDate;
+        studentsList.add(this);
+
+    }
 
     public String getFirstName() {
         return firstName;
@@ -179,7 +201,7 @@ public class Student {
     }
     @Override
     public String toString(){
-        return firstName + "\n" + lastName + "\n" + email + "\n" + faculty + "\n" + studyField + "\n" + group + "\n" + yearOfEducation + "\n" + isOnBudget
-                + "\n" + isOnGrant + "\n" + isOnGrant + "\n" + hasFailures + "\n" + isGraduated + "\n" + dateOfBirth + "\n" +enrollmentDate +"\n";
+        return firstName + "\n" + lastName + "\n" + email + "\n" + faculty.getName() + "\n" + group + "\n" + yearOfEducation + "\n" + isOnBudget
+                + "\n" + isOnGrant  + "\n" + hasFailures + "\n" + isGraduated + "\n" + dateOfBirth + "\n" +enrollmentDate +"\n";
     }
 }

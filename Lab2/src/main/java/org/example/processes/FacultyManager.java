@@ -82,6 +82,31 @@ public class FacultyManager {
                 "cb/<faculty abbreviation>/<email> - check if student belongs to faculty\n" +
                 "b - Back ");
         quit();
+        input = scan.nextLine();
+        if (input.equals("b")) {
+            mainMenu();
+        }
+        else if (input.equals("q")){
+            return;
+        }
+        int slash = input.indexOf('/');
+        {
+            switch (input.substring(0, 2)){
+                case "ns":
+                    break;
+                case "gs":
+                    break;
+                case"de":
+                    break;
+                case "dg":
+                    break;
+                case"cb":
+                    break;
+                default:
+                    System.out.println("Unknown function, please try again");
+                    facultyOperation();
+            }
+        }
     }
     static private void studentOperation(){
         System.out.println("StudOper");
@@ -99,7 +124,7 @@ public class FacultyManager {
         System.out.println(str);
         StudyField studyField = StudyField.valueOf(str);
         Faculty faculty = new Faculty(fn, fa, studyField);
-        Main.facultiesList.add(faculty);
+        Faculty.facultiesList.add(faculty);
         doContinue();
     }
     static private void searchStudent(String str){
@@ -107,14 +132,14 @@ public class FacultyManager {
         doContinue();
     }
     static private void displayFaculties(StudyField studyField){
-        for(Faculty fac: Main.facultiesList)
+        for(Faculty fac: Faculty.facultiesList)
             if(fac.getStudyField().equals(studyField))
                 System.out.println(fac.getName());
         doContinue();
     }
     static private void displayFaculties(){
         //System.out.println("dispFac");
-        for(Faculty fac: Main.facultiesList)
+        for(Faculty fac: Faculty.facultiesList)
             System.out.println(fac.getName());
         doContinue();
     }
