@@ -42,14 +42,12 @@ public class Student {
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = LocalDate.now();
         studentsList.add(this);
-        System.out.println("yes1");
     };
     public Student(String firstName, String lastName, String email, String facultyName, String group, int yearOfEducation, boolean isOnBudget, boolean isOnGrant, boolean hasFailures, boolean isGraduated, LocalDate dateOfBirth, LocalDate enrollmentDate){
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.faculty = Faculty.getFacultyByName(facultyName);
-        faculty.enrollStudent(this);
         this.studyField = faculty.getStudyField();
         this.group = group;
         this.yearOfEducation = yearOfEducation;
@@ -58,10 +56,12 @@ public class Student {
         this.isOnGrant = isOnGrant;
         this.hasFailures = hasFailures;
         this.isGraduated = isGraduated;
+        if (isGraduated) faculty.enrollStudent(this);
+        else
+            faculty.enrollGraduate(this);
         this.dateOfBirth = dateOfBirth;
         this.enrollmentDate = enrollmentDate;
         studentsList.add(this);
-        System.out.println("yes");
     }
 
     public String getFirstName() {
@@ -170,10 +170,18 @@ public class Student {
 
     public void setGraduated(boolean graduated) {
         isGraduated = graduated;
+        if(isGraduated)
+            this.faculty.graduate(this);
     }
 
     public void setMarks(List<Integer> marks) {
         this.marks = marks;
+    }
+    public static Student getStudentByEmail(String email){
+        for(Student stud: studentsList)
+            if (stud.getEmail().equals(email))
+                return stud;
+        return null;
     }
     public void passExam(String season, boolean isPassed){
         if (season.equals("Winter")){

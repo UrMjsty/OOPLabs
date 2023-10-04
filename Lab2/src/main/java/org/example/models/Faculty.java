@@ -47,6 +47,9 @@ public class Faculty {
     public void enrollStudent(Student student){
         currentEnrolledStudents.add(student);
     }
+    public void enrollGraduate(Student student){
+        graduatedStudents.add(student);
+    }
 
     public StudyField getStudyField() {
         return studyField;
@@ -89,13 +92,13 @@ public class Faculty {
             System.out.println("Wrong season, available options are Winter or Summer");
     }
     public void graduate(Student student){
-        System.out.println(student.getFirstName() + "is graduated");
+       // System.out.println(student.getFirstName() + "is graduated");
         currentEnrolledStudents.remove(student);
         graduatedStudents.add(student);
     }
     @Override
     public String toString(){
-        return this.name + " " + this.abbreviation;
+        return this.name + "\n" + this.abbreviation + "\n" + this.studyField.toString() + "\n" ;
     }
     public static Faculty getFacultyByName(String name){
         for(Faculty fac: facultiesList)

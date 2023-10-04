@@ -1,6 +1,8 @@
 package org.example.processes;
 
+import org.example.models.Faculty;
 import org.example.models.Student;
+import org.example.models.StudyField;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -26,7 +28,7 @@ public class FileManager {
             e.printStackTrace();
         }
     }
-    public List<Student> readStudent () {
+    public void readStudent() {
         int n = 0;
         String fn = null;
         String ln = null;
@@ -44,7 +46,6 @@ public class FileManager {
             File studentsFile = new File("students.txt");
             Scanner reader = new Scanner(studentsFile);
             while (reader.hasNextLine()) {
-                Student stud;
                 switch (n % (Student.numberOfAttributes+1)) {
                     case 0:
                         fn = reader.nextLine();
@@ -97,6 +98,50 @@ public class FileManager {
                 IOException e) {
             throw new RuntimeException(e);
         }
-        return new ArrayList<Student>();
+    }
+    public void writeFaculties(List<Faculty> faculties){
+        String str = "";
+        for (Faculty faculty: faculties)
+            str += faculty.toString();
+        try {
+            FileWriter facultyWriter = new FileWriter("faculties.txt");
+            facultyWriter.write(str);
+            facultyWriter.close();
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+    public void readFaculty() {
+        int n = 0;
+        String fn = null;
+        String fa = null;
+        String fs = null;
+        try {
+            File facultyFile = new File("faculties.txt");
+            Scanner reader = new Scanner(facultyFile);
+            while (reader.hasNextLine()) {
+                switch (n % 4) {
+                    case 0:
+                        fn = reader.nextLine();
+                        break;
+                    case 1:
+                        fa = reader.nextLine();
+                        break;
+                    case 2:
+                        fs = reader.nextLine();
+                        break;
+                    case 3:
+                        Faculty faculty = new Faculty(fn, fa, StudyField.valueOf(fs));
+                }
+                n++;
+            }
+            Faculty faculty = new Faculty(fn, fa, StudyField.valueOf(fs));
+            reader.close();
+            //  return reader.next();
+        } catch (
+                IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
